@@ -1,0 +1,250 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #24001e, #8b174d, #ff759d);
+    position: relative;
+}
+
+/* Прасе и жаба */
+
+.animals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    z-index: 5;
+}
+
+.animal {
+    font-size: 85px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.pig {
+    transform: rotate(-10deg);
+}
+
+.frog {
+    animation-delay: 0.5s;
+}
+
+.kiss {
+    font-size: 30px;
+    animation: kiss 1s infinite alternate;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes kiss {
+    from { transform: scale(0.8); }
+    to { transform: scale(1.3); }
+}
+
+/* Картичка */
+
+.card-container {
+    width: 340px;
+    height: 430px;
+    position: relative;
+    perspective: 1500px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.card-inside {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #fff0f4, #ffc4d6);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px #0006;
+    overflow: hidden;
+}
+
+.message {
+    padding: 35px 25px;
+    text-align: center;
+    color: #8c174b;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1.5s ease;
+}
+
+.message h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.message p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 20px 0;
+}
+
+.line {
+    width: 80%;
+    height: 2px;
+    background: #d94c7c;
+    margin: auto;
+}
+
+.final-heart {
+    font-size: 45px;
+    margin-top: 10px;
+    animation: heartbeat 1s infinite;
+}
+
+.message h2 {
+    font-style: italic;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* Предна корица */
+
+.card-cover {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    transform-origin: left;
+    transition: transform 1.8s cubic-bezier(.68,-0.2,.25,1);
+    background: linear-gradient(135deg, #ffdae5, #ff9fbe);
+    border: 5px solid #fff0f4;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px #0006;
+    backface-visibility: hidden;
+}
+
+.cover-decoration {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #941747;
+    padding: 25px;
+}
+
+.big-heart {
+    font-size: 90px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.cover-decoration h2 {
+    font-size: 25px;
+    margin: 25px 0;
+}
+
+.cover-decoration p {
+    font-size: 17px;
+    font-style: italic;
+}
+
+.click-icon {
+    font-size: 35px;
+    margin-top: 20px;
+    animation: bounce 1s infinite;
+}
+
+/* Отваряне */
+
+.card-container.open .card-cover {
+    transform: rotateY(-160deg);
+}
+
+.card-container.open .message {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1s;
+}
+
+/* Инструкция */
+
+.instruction {
+    color: white;
+    margin-top: 30px;
+    font-size: 15px;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.4; }
+}
+
+/* Плаващи сърца */
+
+.heart {
+    position: absolute;
+    bottom: -30px;
+    color: #ffb3d0;
+    font-size: 25px;
+    animation: floatUp 7s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Скрит YouTube плейър */
+
+#music {
+    position: fixed;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    border: 0;
+}
+
+/* Телефони */
+
+@media (max-width: 400px) {
+    .card-container {
+        width: 290px;
+        height: 410px;
+    }
+
+    .message {
+        padding: 25px 18px;
+    }
+
+    .message p {
+        font-size: 15px;
+    }
+
+    .animal {
+        font-size: 65px;
+    }
+}
